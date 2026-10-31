@@ -1,0 +1,21 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT EXTRACT(EPOCH FROM (\n         (SELECT max(last_event_at) FROM memories WHERE forgotten_at IS NULL)\n         - COALESCE(\n           (SELECT max(run_at) FROM interests),\n           (SELECT min(created_at) FROM memories WHERE forgotten_at IS NULL)\n         )\n       ))::float8 AS \"seconds?\"",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "seconds?",
+        "type_info": "Float8",
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      null
+    ]
+  },
+  "hash": "3ba2ecb64c0641d39d1bae8b6357963b08e4337a447eda03b081bb164995e6e7"
+}

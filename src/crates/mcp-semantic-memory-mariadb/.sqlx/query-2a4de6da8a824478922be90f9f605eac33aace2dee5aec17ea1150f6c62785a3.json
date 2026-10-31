@@ -1,0 +1,26 @@
+{
+  "db_name": "MySQL",
+  "query": "SELECT RELEASE_LOCK('mcp-semantic-memory consolidation') AS released",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "released",
+        "type_info": {
+          "type": "Long",
+          "flags": "BINARY",
+          "collation": 63,
+          "max_size": 1
+        },
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      true
+    ]
+  },
+  "hash": "2a4de6da8a824478922be90f9f605eac33aace2dee5aec17ea1150f6c62785a3"
+}

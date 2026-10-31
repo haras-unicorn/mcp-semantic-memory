@@ -1,0 +1,26 @@
+{
+  "db_name": "MySQL",
+  "query": "SELECT RELEASE_LOCK('mcp-semantic-memory vector tables') AS released",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "released",
+        "type_info": {
+          "type": "Long",
+          "flags": "BINARY",
+          "collation": 63,
+          "max_size": 1
+        },
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      true
+    ]
+  },
+  "hash": "55b74cf9852374063dd2046bfbefe36d13321647c9ad0434ef1e93fc55721b87"
+}

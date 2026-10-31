@@ -1,0 +1,14 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE memories SET\n         event_count = event_count + 1,\n         last_event_at = now(),\n         forgotten_at = NULL,\n         version = version + 1,\n         updated_at = now()\n       WHERE id = $1",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Int8"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "3a1bf0f15b5d450ef1b985ed79a28d999b3245f7ea6fbfa50271ad791dcf02a5"
+}

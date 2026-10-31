@@ -1,0 +1,16 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO events (memory_id, content, metadata, memory_text)\n       SELECT id, $2, $3, content FROM memories WHERE id = $1",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Int8",
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "8e0f24f86d0564bb792ab549597842997663fc6f2dc71e47246d2e9d25fb626f"
+}

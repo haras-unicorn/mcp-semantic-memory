@@ -1,0 +1,26 @@
+{
+  "db_name": "MySQL",
+  "query": "SELECT GET_LOCK('mcp-semantic-memory vector tables',\n                     @@lock_wait_timeout) AS locked",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "locked",
+        "type_info": {
+          "type": "Long",
+          "flags": "BINARY",
+          "collation": 63,
+          "max_size": 1
+        },
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      true
+    ]
+  },
+  "hash": "ad13ec971ebe3d6ee27485825a6b6ec5aa167ca732565096f78d0fced1e9723c"
+}

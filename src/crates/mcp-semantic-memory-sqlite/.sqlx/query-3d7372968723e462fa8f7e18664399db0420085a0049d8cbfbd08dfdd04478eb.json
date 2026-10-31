@@ -1,0 +1,21 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT MAX(\n           strftime('%Y-%m-%dT%H:%M:%fZ', 'now'),\n           COALESCE(strftime(\n             '%Y-%m-%dT%H:%M:%fZ',\n             (SELECT max(run_at) FROM interests),\n             '+0.001 seconds'\n           ), '')\n         ) AS \"run_at!: String\"",
+  "describe": {
+    "columns": [
+      {
+        "name": "run_at!: String",
+        "ordinal": 0,
+        "type_info": "Text",
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      null
+    ]
+  },
+  "hash": "3d7372968723e462fa8f7e18664399db0420085a0049d8cbfbd08dfdd04478eb"
+}

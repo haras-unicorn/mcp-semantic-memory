@@ -1,0 +1,12 @@
+{
+  "db_name": "MySQL",
+  "query": "UPDATE memories SET\n         event_count = event_count + 1,\n         last_event_at = CURRENT_TIMESTAMP(6),\n         forgotten_at = NULL,\n         version = version + 1,\n         updated_at = CURRENT_TIMESTAMP(6)\n       WHERE id = ?",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": []
+  },
+  "hash": "965e7de0e10c30e7be1a86e5dc608e9a3b6804948d0e18eb994d364e88f323eb"
+}

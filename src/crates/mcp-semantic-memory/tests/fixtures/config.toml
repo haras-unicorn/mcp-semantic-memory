@@ -1,0 +1,7 @@
+[database]
+url = "sqlite::memory:"
+
+[embedding]
+url = "http://localhost:8080"
+model = "fixture"
+dimension = 4

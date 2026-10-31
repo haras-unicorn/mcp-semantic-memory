@@ -1,0 +1,68 @@
+{
+  "jobs":
+    {
+      "build":
+        {
+          "runs-on": "${{ matrix.os }}",
+          "steps":
+            [
+              { "uses": "actions/checkout@v4", "with": { "fetch-depth": 0 } },
+              {
+                "uses": "cachix/install-nix-action@v31",
+                "with":
+                  {
+                    "extra_nix_config":
+                      "experimental-features = nix-command flakes
+                      auto-allocate-uids cgroups\nauto-allocate-uids = true\n",
+                  },
+              },
+              {
+                "uses": "cachix/cachix-action@v15",
+                "with":
+                  {
+                    "authToken": "${{ secrets.CACHIX_AUTH_TOKEN }}",
+                    "extraPullNames": "haras-releases",
+                    "name": "haras",
+                  },
+              },
+              {
+                "if": "runner.os == 'Linux'",
+                "name": "Enable KVM",
+                "run":
+                  "echo 'KERNEL==\"kvm\", GROUP=\"kvm\", MODE=\"0666\",
+                  OPTIONS+=\"static_node=kvm\"' | sudo tee
+                  /etc/udev/rules.d/99-kvm4all.rules\nsudo udevadm control
+                  --reload-rules\nsudo udevadm trigger --name-match=kvm\n",
+              },
+              {
+                "if": "runner.os == 'Linux'",
+                "name": "Allow unprivileged user namespaces",
+                "run":
+                  "if [ -e
+                  /proc/sys/kernel/apparmor_restrict_unprivileged_userns ];
+                  then\n  sudo sysctl -w
+                  kernel.apparmor_restrict_unprivileged_userns=0\nfi\n",
+              },
+              {
+                "env":
+                  {
+                    "GH_TOKEN": "${{ secrets.GITHUB_TOKEN }}",
+                    "TAG": "${{ github.event.release.tag_name }}",
+                  },
+                "run":
+                  "path=\"$(nix build --no-link --print-out-paths --show-trace
+                  .#mcp-semantic-memory)\"\nsystem=\"$(nix eval --impure --raw
+                  --expr builtins.currentSystem)\"\ncp
+                  \"$path/bin/mcp-semantic-memory\"
+                  \"mcp-semantic-memory-$system\"\ngh release upload \"$TAG\"
+                  \"mcp-semantic-memory-$system\" --clobber\n",
+              },
+            ],
+          "strategy":
+            { "matrix": { "os": ["ubuntu-latest", "ubuntu-24.04-arm"] } },
+        },
+    },
+  "name": "build",
+  "on": { "release": { "types": ["published"] } },
+  "permissions": { "contents": "write" },
+}

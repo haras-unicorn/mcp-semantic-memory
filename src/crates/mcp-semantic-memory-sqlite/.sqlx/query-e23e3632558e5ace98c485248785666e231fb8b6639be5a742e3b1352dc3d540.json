@@ -1,0 +1,134 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT * FROM memories WHERE id = ?1",
+  "describe": {
+    "columns": [
+      {
+        "name": "id",
+        "ordinal": 0,
+        "type_info": "Integer",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "id"
+          }
+        }
+      },
+      {
+        "name": "content",
+        "ordinal": 1,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "content"
+          }
+        }
+      },
+      {
+        "name": "content_hash",
+        "ordinal": 2,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "content_hash"
+          }
+        }
+      },
+      {
+        "name": "event_count",
+        "ordinal": 3,
+        "type_info": "Integer",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "event_count"
+          }
+        }
+      },
+      {
+        "name": "last_event_at",
+        "ordinal": 4,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "last_event_at"
+          }
+        }
+      },
+      {
+        "name": "interest_score",
+        "ordinal": 5,
+        "type_info": "Float",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "interest_score"
+          }
+        }
+      },
+      {
+        "name": "forgotten_at",
+        "ordinal": 6,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "forgotten_at"
+          }
+        }
+      },
+      {
+        "name": "version",
+        "ordinal": 7,
+        "type_info": "Integer",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "version"
+          }
+        }
+      },
+      {
+        "name": "created_at",
+        "ordinal": 8,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "created_at"
+          }
+        }
+      },
+      {
+        "name": "updated_at",
+        "ordinal": 9,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "updated_at"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "e23e3632558e5ace98c485248785666e231fb8b6639be5a742e3b1352dc3d540"
+}

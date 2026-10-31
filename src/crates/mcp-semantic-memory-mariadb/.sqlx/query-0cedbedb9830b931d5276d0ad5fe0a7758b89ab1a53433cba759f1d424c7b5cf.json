@@ -1,0 +1,12 @@
+{
+  "db_name": "MySQL",
+  "query": "INSERT INTO interests (run_at, top_terms) VALUES (?, ?)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 2
+    },
+    "nullable": []
+  },
+  "hash": "0cedbedb9830b931d5276d0ad5fe0a7758b89ab1a53433cba759f1d424c7b5cf"
+}

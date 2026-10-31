@@ -1,0 +1,40 @@
+[package]
+name = "mcp-semantic-memory-postgres"
+version = "0.1.0"
+description.workspace = true
+repository.workspace = true
+authors.workspace = true
+license.workspace = true
+readme.workspace = true
+edition.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[lints]
+workspace = true
+
+[features]
+default = []
+native-tls = ["sqlx/tls-native-tls"]
+
+# NOTE: sqlx has no TLS without the feature, so the test is only built with it
+[[test]]
+name = "tls"
+required-features = ["native-tls"]
+
+[dependencies]
+async-trait = "0.1"
+chrono = "0.4"
+mcp-semantic-memory.workspace = true
+serde_json = "1"
+sqlx = { version = "0.9", default-features = false, features = [
+  "runtime-tokio",
+  "chrono",
+  "migrate",
+  "macros",
+  "postgres",
+] }
+
+[dev-dependencies]
+mcp-semantic-memory-testing = { workspace = true, features = ["containers"] }
+tokio = { version = "1", features = ["macros", "rt"] }

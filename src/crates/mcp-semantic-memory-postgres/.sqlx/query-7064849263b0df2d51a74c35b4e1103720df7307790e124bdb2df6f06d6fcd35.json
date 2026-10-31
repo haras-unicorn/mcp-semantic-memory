@@ -1,0 +1,21 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT GREATEST(\n           clock_timestamp(),\n           COALESCE(\n             (SELECT max(run_at) FROM interests) + interval '1 microsecond',\n             '-infinity'::timestamptz\n           )\n         ) AS \"run_at!\"",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "run_at!",
+        "type_info": "Timestamptz",
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      null
+    ]
+  },
+  "hash": "7064849263b0df2d51a74c35b4e1103720df7307790e124bdb2df6f06d6fcd35"
+}

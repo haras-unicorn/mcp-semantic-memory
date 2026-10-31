@@ -1,0 +1,21 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT (julianday(newest) - julianday(COALESCE(latest, oldest)))\n         * 86400.0 AS \"seconds?: f64\"\n       FROM (\n         SELECT max(last_event_at) AS newest, min(created_at) AS oldest\n         FROM memories WHERE forgotten_at IS NULL\n       ), (SELECT max(run_at) AS latest FROM interests)",
+  "describe": {
+    "columns": [
+      {
+        "name": "seconds?: f64",
+        "ordinal": 0,
+        "type_info": "Float",
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      true
+    ]
+  },
+  "hash": "1f7755aff184ab008db9b5423a28727a16b33f9dc220b77750ff5b28e5bb4bb1"
+}

@@ -1,0 +1,26 @@
+{
+  "db_name": "MySQL",
+  "query": "SELECT GET_LOCK('mcp-semantic-memory consolidation',\n                       @@lock_wait_timeout) AS locked",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "locked",
+        "type_info": {
+          "type": "Long",
+          "flags": "BINARY",
+          "collation": 63,
+          "max_size": 1
+        },
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      true
+    ]
+  },
+  "hash": "190710e43016cf3bae443309f3715bab761da93ffe4c8016db9994776226c55e"
+}

@@ -1,0 +1,12 @@
+{
+  "db_name": "SQLite",
+  "query": "INSERT INTO events (memory_id, content, metadata, memory_text)\n     VALUES (?1, ?2, ?3, ?4)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 4
+    },
+    "nullable": []
+  },
+  "hash": "641e5627244d60f7834f5a67d97b8cc6beff32c8227e6bc6e049454e1b3aa892"
+}

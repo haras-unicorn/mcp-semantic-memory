@@ -1,0 +1,31 @@
+{
+  "db_name": "MySQL",
+  "query": "SELECT version FROM memories WHERE id = ? FOR UPDATE",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "version",
+        "type_info": {
+          "type": "LongLong",
+          "flags": "NOT_NULL",
+          "collation": 63,
+          "max_size": 20
+        },
+        "origin": {
+          "Table": {
+            "table": "prepare.memories",
+            "name": "version"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "a82db8baac185ad10789eb26dcade315d32b45903d73f01a51bf2baa9b6a6316"
+}

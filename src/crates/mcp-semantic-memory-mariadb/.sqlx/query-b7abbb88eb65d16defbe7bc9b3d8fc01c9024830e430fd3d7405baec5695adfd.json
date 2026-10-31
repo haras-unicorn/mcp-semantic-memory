@@ -1,0 +1,12 @@
+{
+  "db_name": "MySQL",
+  "query": "INSERT INTO memories\n         (content, content_hash, event_count, interest_score)\n       VALUES (?, ?, 1, ?)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 3
+    },
+    "nullable": []
+  },
+  "hash": "b7abbb88eb65d16defbe7bc9b3d8fc01c9024830e430fd3d7405baec5695adfd"
+}

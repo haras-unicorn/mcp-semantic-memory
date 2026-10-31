@@ -1,0 +1,134 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT m.*\n       FROM memories_fts\n       JOIN memories m ON m.id = memories_fts.rowid\n       WHERE memories_fts MATCH ?1 AND m.forgotten_at IS NULL\n       ORDER BY memories_fts.rank\n       LIMIT ?2",
+  "describe": {
+    "columns": [
+      {
+        "name": "id",
+        "ordinal": 0,
+        "type_info": "Integer",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "id"
+          }
+        }
+      },
+      {
+        "name": "content",
+        "ordinal": 1,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "content"
+          }
+        }
+      },
+      {
+        "name": "content_hash",
+        "ordinal": 2,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "content_hash"
+          }
+        }
+      },
+      {
+        "name": "event_count",
+        "ordinal": 3,
+        "type_info": "Integer",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "event_count"
+          }
+        }
+      },
+      {
+        "name": "last_event_at",
+        "ordinal": 4,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "last_event_at"
+          }
+        }
+      },
+      {
+        "name": "interest_score",
+        "ordinal": 5,
+        "type_info": "Float",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "interest_score"
+          }
+        }
+      },
+      {
+        "name": "forgotten_at",
+        "ordinal": 6,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "forgotten_at"
+          }
+        }
+      },
+      {
+        "name": "version",
+        "ordinal": 7,
+        "type_info": "Integer",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "version"
+          }
+        }
+      },
+      {
+        "name": "created_at",
+        "ordinal": 8,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "created_at"
+          }
+        }
+      },
+      {
+        "name": "updated_at",
+        "ordinal": 9,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "updated_at"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Right": 2
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "c641b95bd973530dca8348530cf346acec8eee83fbbf5d9f299d32a9996f3bc1"
+}

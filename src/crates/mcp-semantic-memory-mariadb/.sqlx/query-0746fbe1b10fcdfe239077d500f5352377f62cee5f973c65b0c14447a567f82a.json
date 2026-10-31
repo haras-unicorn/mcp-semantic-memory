@@ -1,0 +1,12 @@
+{
+  "db_name": "MySQL",
+  "query": "UPDATE memories SET\n           interest_score = ?,\n           forgotten_at = CASE WHEN ? THEN ? ELSE forgotten_at END\n         WHERE id = ? AND version = ?",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 5
+    },
+    "nullable": []
+  },
+  "hash": "0746fbe1b10fcdfe239077d500f5352377f62cee5f973c65b0c14447a567f82a"
+}

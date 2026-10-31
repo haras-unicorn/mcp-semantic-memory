@@ -1,0 +1,137 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT m.*\n       FROM memories m\n       WHERE m.forgotten_at IS NULL\n         AND to_tsvector('simple', m.content) @@ to_tsquery('simple', $1)\n       ORDER BY\n         ts_rank(to_tsvector('simple', m.content), to_tsquery('simple', $1))\n           DESC,\n         m.id\n       LIMIT $2",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "id"
+          }
+        }
+      },
+      {
+        "ordinal": 1,
+        "name": "content",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "content"
+          }
+        }
+      },
+      {
+        "ordinal": 2,
+        "name": "content_hash",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "content_hash"
+          }
+        }
+      },
+      {
+        "ordinal": 3,
+        "name": "event_count",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "event_count"
+          }
+        }
+      },
+      {
+        "ordinal": 4,
+        "name": "last_event_at",
+        "type_info": "Timestamptz",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "last_event_at"
+          }
+        }
+      },
+      {
+        "ordinal": 5,
+        "name": "interest_score",
+        "type_info": "Float4",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "interest_score"
+          }
+        }
+      },
+      {
+        "ordinal": 6,
+        "name": "forgotten_at",
+        "type_info": "Timestamptz",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "forgotten_at"
+          }
+        }
+      },
+      {
+        "ordinal": 7,
+        "name": "version",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "version"
+          }
+        }
+      },
+      {
+        "ordinal": 8,
+        "name": "created_at",
+        "type_info": "Timestamptz",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "created_at"
+          }
+        }
+      },
+      {
+        "ordinal": 9,
+        "name": "updated_at",
+        "type_info": "Timestamptz",
+        "origin": {
+          "Table": {
+            "table": "memories",
+            "name": "updated_at"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Int8"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "59cc81d947fe53bc4048f8a6dba47a92ad31d9459c3722edf126e46b77d8002f"
+}

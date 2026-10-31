@@ -1,0 +1,26 @@
+{
+  "db_name": "MySQL",
+  "query": "SELECT TIMESTAMPDIFF(MICROSECOND, COALESCE(\n       (SELECT max(run_at) FROM interests),\n       (SELECT min(created_at) FROM memories WHERE forgotten_at IS NULL)\n     ), (SELECT max(last_event_at) FROM memories WHERE forgotten_at IS NULL))",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "TIMESTAMPDIFF(MICROSECOND, COALESCE(\n       (SELECT max(run_at) FROM interests),\n       (SELECT min(created_at) FROM memories WHERE forgotten_at IS NULL)\n     ), (SELECT max(last_event_at) FROM memories WHERE forgotten_at IS NULL))",
+        "type_info": {
+          "type": "LongLong",
+          "flags": "BINARY",
+          "collation": 63,
+          "max_size": 21
+        },
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      true
+    ]
+  },
+  "hash": "7d46197aee22f86837e6f887e0b5c1da3bdfedca68e21c27d22e7721011b5b62"
+}

@@ -1,0 +1,59 @@
+[workspace]
+resolver = "3"
+members = ["src/crates/*"]
+
+[workspace.package]
+description = "Stateless MCP server for long-term semantic memory"
+repository = "https://github.com/haras-unicorn/mcp-semantic-memory"
+authors = ["haras-unicorn <github@haras-unicorn.net>"]
+license = "MIT"
+readme = "README.md"
+edition = "2024"
+keywords = ["mcp", "memory", "semantic", "embeddings", "sqlite"]
+categories = ["command-line-utilities"]
+
+[workspace.dependencies]
+mcp-semantic-memory = { path = "src/crates/mcp-semantic-memory", version = "0.1.0" }
+mcp-semantic-memory-mariadb = { path = "src/crates/mcp-semantic-memory-mariadb", version = "0.1.0" }
+mcp-semantic-memory-postgres = { path = "src/crates/mcp-semantic-memory-postgres", version = "0.1.0" }
+mcp-semantic-memory-sqlite = { path = "src/crates/mcp-semantic-memory-sqlite", version = "0.1.0" }
+mcp-semantic-memory-testing = { path = "src/crates/mcp-semantic-memory-testing" }
+
+[workspace.lints.rust]
+unsafe_code = "deny"
+missing_docs = "deny"
+
+[workspace.lints.clippy]
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+unreachable = "deny"
+todo = "deny"
+unimplemented = "deny"
+arithmetic_side_effects = "deny"
+indexing_slicing = "deny"
+string_slice = "deny"
+as_conversions = "deny"
+dbg_macro = "deny"
+print_stdout = "deny"
+print_stderr = "deny"
+undocumented_unsafe_blocks = "deny"
+allow_attributes_without_reason = "deny"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+strip = true
+
+[profile.ci]
+inherits = "release"
+lto = false
+codegen-units = 16
+opt-level = 1
+
+[profile.dev]
+debug = 1
+
+[profile.dev.package."*"]
+opt-level = 3

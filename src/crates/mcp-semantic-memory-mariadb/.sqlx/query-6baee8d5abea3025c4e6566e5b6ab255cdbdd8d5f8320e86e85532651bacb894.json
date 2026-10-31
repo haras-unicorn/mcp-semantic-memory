@@ -1,0 +1,12 @@
+{
+  "db_name": "MySQL",
+  "query": "INSERT INTO events (memory_id, content, metadata, memory_text)\n     VALUES (?, ?, ?, ?)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 4
+    },
+    "nullable": []
+  },
+  "hash": "6baee8d5abea3025c4e6566e5b6ab255cdbdd8d5f8320e86e85532651bacb894"
+}

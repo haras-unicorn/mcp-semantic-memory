@@ -1,0 +1,8 @@
+[book]
+title = "mcp-semantic-memory"
+authors = ["haras-unicorn"]
+language = "en"
+src = "src"
+
+[output.html]
+git-repository-url = "https://github.com/haras-unicorn/mcp-semantic-memory"

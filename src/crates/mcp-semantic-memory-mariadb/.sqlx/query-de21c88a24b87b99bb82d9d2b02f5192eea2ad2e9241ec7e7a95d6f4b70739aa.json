@@ -1,0 +1,26 @@
+{
+  "db_name": "MySQL",
+  "query": "SELECT count(*) FROM memories WHERE forgotten_at IS NOT NULL",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "count(*)",
+        "type_info": {
+          "type": "LongLong",
+          "flags": "NOT_NULL | BINARY",
+          "collation": 63,
+          "max_size": 21
+        },
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "de21c88a24b87b99bb82d9d2b02f5192eea2ad2e9241ec7e7a95d6f4b70739aa"
+}
