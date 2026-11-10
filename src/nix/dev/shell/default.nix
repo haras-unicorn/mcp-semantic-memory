@@ -399,7 +399,9 @@
             installable = null;
 
             steps = [
-              { run = "nix flake check --show-trace"; }
+              {
+                run = "nix flake check --show-trace --print-build-logs --max-jobs 1 --keep-going";
+              }
             ];
           };
 
