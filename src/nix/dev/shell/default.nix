@@ -392,10 +392,7 @@
 
         workflows = {
           check = {
-            on = {
-              pull_request = { };
-              push.branches = [ "main" ];
-            };
+            on.pull_request = { };
 
             matrix.os = [ "ubuntu-latest" ];
 
@@ -406,9 +403,55 @@
             ];
           };
 
+          # NOTE: the book is built by nix and deployed to GitHub Pages. The
+          # job needs the github-pages environment for the deploy action, and
+          # the repository's Pages source set to GitHub Actions. The artifact
+          # is a copy because the action does not follow the result link.
+          docs = {
+            on = {
+              push.branches = [ "main" ];
+              workflow_dispatch = { };
+            };
+
+            permissions = {
+              pages = "write";
+              "id-token" = "write";
+            };
+
+            installable = ".#docs";
+
+            steps = [
+              { run = "cp -rL result site"; }
+              { uses = "actions/configure-pages@v5"; }
+              {
+                uses = "actions/upload-pages-artifact@v3";
+                "with".path = "site";
+              }
+              {
+                id = "deployment";
+                uses = "actions/deploy-pages@v4";
+              }
+            ];
+
+            jobs.build = {
+              environment = {
+                name = "github-pages";
+                url = "\${{ steps.deployment.outputs.page_url }}";
+              };
+              concurrency = {
+                group = "pages";
+                cancel-in-progress = false;
+              };
+            };
+          };
+
           # NOTE: needs a RELEASE_PLZ_TOKEN personal access token (and a
           # CARGO_REGISTRY_TOKEN secret). Tags and releases created with the
           # default GITHUB_TOKEN do not trigger the build workflow.
+          #
+          # The release-plz.toml makes one tag for the whole repository, from
+          # the -cli package, and the build workflow puts the binaries on it.
+          # The package list there must name every published crate.
           release = {
             on.push.branches = [ "main" ];
 

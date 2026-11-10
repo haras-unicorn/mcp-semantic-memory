@@ -1,0 +1,66 @@
+{
+  "jobs":
+    {
+      "build":
+        {
+          "concurrency": { "cancel-in-progress": false, "group": "pages" },
+          "environment":
+            {
+              "name": "github-pages",
+              "url": "${{ steps.deployment.outputs.page_url }}",
+            },
+          "runs-on": "ubuntu-latest",
+          "steps":
+            [
+              { "uses": "actions/checkout@v4", "with": { "fetch-depth": 0 } },
+              {
+                "uses": "cachix/install-nix-action@v31",
+                "with":
+                  {
+                    "extra_nix_config":
+                      "experimental-features = nix-command flakes
+                      auto-allocate-uids cgroups\nauto-allocate-uids = true\n",
+                  },
+              },
+              {
+                "uses": "cachix/cachix-action@v15",
+                "with":
+                  {
+                    "authToken": "${{ secrets.CACHIX_AUTH_TOKEN }}",
+                    "extraPullNames": "haras-releases",
+                    "name": "haras",
+                  },
+              },
+              {
+                "if": "runner.os == 'Linux'",
+                "name": "Enable KVM",
+                "run":
+                  "echo 'KERNEL==\"kvm\", GROUP=\"kvm\", MODE=\"0666\",
+                  OPTIONS+=\"static_node=kvm\"' | sudo tee
+                  /etc/udev/rules.d/99-kvm4all.rules\nsudo udevadm control
+                  --reload-rules\nsudo udevadm trigger --name-match=kvm\n",
+              },
+              {
+                "if": "runner.os == 'Linux'",
+                "name": "Allow unprivileged user namespaces",
+                "run":
+                  "if [ -e
+                  /proc/sys/kernel/apparmor_restrict_unprivileged_userns ];
+                  then\n  sudo sysctl -w
+                  kernel.apparmor_restrict_unprivileged_userns=0\nfi\n",
+              },
+              { "run": "nix build --show-trace .#docs" },
+              { "run": "cp -rL result site" },
+              { "uses": "actions/configure-pages@v5" },
+              {
+                "uses": "actions/upload-pages-artifact@v3",
+                "with": { "path": "site" },
+              },
+              { "id": "deployment", "uses": "actions/deploy-pages@v4" },
+            ],
+        },
+    },
+  "name": "docs",
+  "on": { "push": { "branches": ["main"] }, "workflow_dispatch": {} },
+  "permissions": { "contents": "read", "id-token": "write", "pages": "write" },
+}
