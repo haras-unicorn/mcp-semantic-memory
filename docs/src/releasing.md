@@ -14,8 +14,13 @@ lists the changes of the library and store crates.
 1. Every push to `main` runs the `release` workflow. Its `release-pr` step opens
    or updates a pull request that bumps the version and writes the changelog
    from the commits since the last release.
-2. Merging that pull request makes the `release` step publish every crate to
-   crates.io, tag the commit `v<version>` and create the GitHub release.
+2. Merging that pull request, and only that, makes the `release` step publish
+   every crate to crates.io, tag the commit `v<version>` and create the GitHub
+   release. `release_always = false` in `release-plz.toml` is what stops other
+   merges from releasing. release-plz knows a release pull request by its branch
+   name, which starts with `release-plz-`, so do not rename those branches. A
+   change that has to release without a bump of its own, like a CI fix, needs a
+   branch with that prefix.
 3. A published release runs the `build` workflow, which builds the static binary
    with Nix on x86_64 and aarch64 Linux and uploads it to that release as
    `mcp-semantic-memory-<system>`.
@@ -37,9 +42,8 @@ and deploys it to GitHub Pages.
   `GITHUB_TOKEN` do not trigger the `build` workflow, which is why the first one
   is needed.
 - In the repository settings, set the Pages source to GitHub Actions.
-- The first release is made by the first push to `main`: release-plz publishes a
-  version that is not on crates.io yet without a pull request. A published
-  version can be yanked but never deleted.
+- Let the release pull request bump the version, because it also writes the
+  changelog. A published version can be yanked but never deleted.
 - The five crate names were free on crates.io when this was checked
   (2026-11-10).
 - Publish order matters to crates.io, because the stores depend on the core

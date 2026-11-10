@@ -4,6 +4,9 @@
 git_tag_enable = false
 git_release_enable = false
 changelog_update = false
+# Release only when a release pull request is merged. The default publishes
+# every unpublished version on every push to main.
+release_always = false
 
 [[package]]
 name = "mcp-semantic-memory-cli"

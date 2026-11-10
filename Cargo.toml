@@ -13,10 +13,10 @@ keywords = ["mcp", "memory", "semantic", "embeddings", "sqlite"]
 categories = ["command-line-utilities"]
 
 [workspace.dependencies]
-mcp-semantic-memory = { path = "src/crates/mcp-semantic-memory", version = "0.1.1" }
-mcp-semantic-memory-mariadb = { path = "src/crates/mcp-semantic-memory-mariadb", version = "0.1.1" }
-mcp-semantic-memory-postgres = { path = "src/crates/mcp-semantic-memory-postgres", version = "0.1.1" }
-mcp-semantic-memory-sqlite = { path = "src/crates/mcp-semantic-memory-sqlite", version = "0.1.1" }
+mcp-semantic-memory = { path = "src/crates/mcp-semantic-memory", version = "0.1.2" }
+mcp-semantic-memory-mariadb = { path = "src/crates/mcp-semantic-memory-mariadb", version = "0.1.2" }
+mcp-semantic-memory-postgres = { path = "src/crates/mcp-semantic-memory-postgres", version = "0.1.2" }
+mcp-semantic-memory-sqlite = { path = "src/crates/mcp-semantic-memory-sqlite", version = "0.1.2" }
 mcp-semantic-memory-testing = { path = "src/crates/mcp-semantic-memory-testing" }
 
 [workspace.lints.rust]

@@ -1,6 +1,6 @@
 [package]
 name = "mcp-semantic-memory-mariadb"
-version = "0.1.1"
+version = "0.1.2"
 description.workspace = true
 repository.workspace = true
 authors.workspace = true
