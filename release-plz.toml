@@ -1,4 +1,38 @@
 [workspace]
+# One tag and one release for the whole repository, made by the -cli package
+# below, and one changelog. The other packages only get published.
+git_tag_enable = false
+git_release_enable = false
+changelog_update = false
+
+[[package]]
+name = "mcp-semantic-memory-cli"
+version_group = "mcp-semantic-memory"
+changelog_include = [
+  "mcp-semantic-memory",
+  "mcp-semantic-memory-sqlite",
+  "mcp-semantic-memory-postgres",
+  "mcp-semantic-memory-mariadb",
+]
 changelog_update = true
-git_release_enable = true
+changelog_path = "./CHANGELOG.md"
 git_tag_enable = true
+git_tag_name = "v{{ version }}"
+git_release_enable = true
+git_release_name = "v{{ version }}"
+
+[[package]]
+name = "mcp-semantic-memory"
+version_group = "mcp-semantic-memory"
+
+[[package]]
+name = "mcp-semantic-memory-sqlite"
+version_group = "mcp-semantic-memory"
+
+[[package]]
+name = "mcp-semantic-memory-postgres"
+version_group = "mcp-semantic-memory"
+
+[[package]]
+name = "mcp-semantic-memory-mariadb"
+version_group = "mcp-semantic-memory"
